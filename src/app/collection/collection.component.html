@@ -1,9 +1,40 @@
 <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Faction
     <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">HTML</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
-    </ul>
+      <div class="dropdown-menu">
+        <button class="dropdown-item" 
+        type="button" 
+        *ngFor="let faction of factions | keyvalue"> 
+        {{faction.value.name}} </button>
+      </div>
+</div>
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-primary dropdown-toggle" 
+    type="button" 
+    data-toggle="dropdown">
+    Armies</button>
+
+    <div *ngIf="!showArmyInput">
+    <button 
+      (click)="onAddArmy()"
+      class="btn btn-outline-secondary">
+      <i class="fas fa-plus"></i>
+    </button></div>
+
+    <div *ngIf="showArmyInput">
+      <input  
+      type="text" 
+      class="form-control col-md-4">
+    </div>
+    
+    <div class="dropdown-menu">
+      <button class="dropdown-item" 
+      type="button" 
+      *ngFor="let army of armies | keyvalue"> 
+      {{ army.value.name }} </button>
+    </div>
   </div>
+</div> 
+

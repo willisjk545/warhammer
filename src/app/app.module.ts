@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './Navigation/header/header.component';
 import { CollectionComponent } from './collection/collection.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   {path: 'collection', component: CollectionComponent}
@@ -18,7 +19,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    // Needed for http Requests
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
