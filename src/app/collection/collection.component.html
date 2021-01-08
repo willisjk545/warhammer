@@ -18,7 +18,7 @@
 
     <div *ngIf="!showArmyInput">
     <button 
-      (click)="onAddArmy()"
+      (click)="showHideAddArmy()"
       class="btn btn-outline-secondary">
       <i class="fas fa-plus"></i>
     </button></div>
@@ -26,7 +26,8 @@
     <div *ngIf="showArmyInput">
       <input  
       type="text" 
-      class="form-control col-md-4">
+      class="form-control col-md-4"
+      (keydown.enter)="onAddArmy($event.target.value)">
     </div>
     
     <div class="dropdown-menu">
