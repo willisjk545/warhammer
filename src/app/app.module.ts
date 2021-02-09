@@ -6,6 +6,7 @@ import { HeaderComponent } from './Navigation/header/header.component';
 import { CollectionComponent } from './collection/collection.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { CardComponent } from './card/card.component';
 
 const appRoutes: Routes = [
   {path: 'collection', component: CollectionComponent}
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    CollectionComponent
+    CollectionComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

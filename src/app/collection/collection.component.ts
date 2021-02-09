@@ -12,13 +12,15 @@ export class CollectionComponent implements OnInit {
 
   factions: object;
   armies: object;
-  showArmyInput = false
+  showArmyInput = false;
+  isImperium = 2;
+  isChaos = 2;
+  isXenos = 2;
 
   constructor(private collectionService: CollectionService) { }
 
   ngOnInit() {
     this.showFactions();
-    this.showArmies();
   }
 
   showFactions(): void {
@@ -37,6 +39,35 @@ export class CollectionComponent implements OnInit {
 
   onAddArmy(armyName): void{
     this.collectionService.saveNewArmy(armyName)
-    .subscribe((newArmyData) => console.log(newArmyData))
+    .subscribe((newArmyData) => newArmyData)
   }
+
+  onFactionImperium(): void{
+    this.isImperium = 1
+    this.isXenos = 3
+    this.isChaos = 3
+    this.collectionService.getArmyByFactionId(1)
+    .subscribe((ImperiumArmies) => this.armies = ImperiumArmies)
+  }
+  onFactionChaos(): void{
+    this.isChaos = 1
+    this.isImperium = 3
+    this.isXenos = 3
+    this.collectionService.getArmyByFactionId(2)
+    .subscribe((ChaosArmies) => this.armies = ChaosArmies)
+  }
+  onFactionXenos(): void{
+    this.isXenos = 1
+    this.isImperium = 3
+    this.isChaos = 3
+    this.collectionService.getArmyByFactionId(3)
+    .subscribe((XenosArmies) => this.armies = XenosArmies)
+  }
+
+  onDeleteArmy(armyID: number): void{
+    console.log(armyID)
+    this.collectionService.deleteArmy(armyID)
+    .subscribe();
+  }
+
 }
