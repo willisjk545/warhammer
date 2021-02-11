@@ -23,6 +23,13 @@
     margin: 1rem;
     border: solid;
     border-color: darkgray;
+    width: 10rem;
+}
+
+.addArmyButton{
+    width: 9rem;
+    height: 9rem;
+    margin: 1rem;
 }
 
 

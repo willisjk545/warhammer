@@ -2,6 +2,9 @@ import { HttpParams } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { CollectionService } from './collection.service'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AddArmyModalComponent } from '../modal/add-army-modal/add-army-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collection',
@@ -16,8 +19,11 @@ export class CollectionComponent implements OnInit {
   isImperium = 2;
   isChaos = 2;
   isXenos = 2;
+  modalRef: BsModalRef;
 
-  constructor(private collectionService: CollectionService) { }
+  constructor(private collectionService: CollectionService,
+              private modalService: BsModalService,
+              private router: Router) { }
 
   ngOnInit() {
     this.showFactions();
@@ -35,11 +41,6 @@ export class CollectionComponent implements OnInit {
 
   showHideAddArmy(): void {
     this.showArmyInput = !this.showArmyInput
-  }
-
-  onAddArmy(armyName): void{
-    this.collectionService.saveNewArmy(armyName)
-    .subscribe((newArmyData) => newArmyData)
   }
 
   onFactionImperium(): void{
@@ -65,9 +66,12 @@ export class CollectionComponent implements OnInit {
   }
 
   onDeleteArmy(armyID: number): void{
-    console.log(armyID)
     this.collectionService.deleteArmy(armyID)
     .subscribe();
+    this.router.navigate(['collection/'])
   }
 
+  openModal(): void {
+    this.modalRef = this.modalService.show(AddArmyModalComponent);
+ }
 }

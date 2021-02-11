@@ -1,28 +1,23 @@
-<!-- <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Faction
-    <span class="caret"></span></button>
-      <div class="dropdown-menu">
-        <button class="dropdown-item" 
-        type="button" 
-        *ngFor="let faction of factions | keyvalue"> 
-        {{faction.value.name}} </button>
-      </div>
-</div> -->
-
 <div class="container">
   <div class="row">
+
     <div class="col-md-4 p-0 faction-Background-img"
       [ngClass]="{'col-md-12': isImperium==1, 'col-md-4': isImperium==2, 'd-none': isImperium==3}"
       style="background-image: url(/assets/Imperium_Background.jpg);">
 
       <div *ngIf="isImperium==1" class="row">
-        <div *ngFor="let army of armies | keyvalue" class="card card-Armies" style="width: 10rem;">
+        <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
           <img class="card-img-top" src="" alt="">
           <div class="card-body">
             <h5 class="card-title">{{army.value.name}}</h5>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="#" class="btn btn-primary">Remove</a>
+            <button class="btn btn-primary" (click)="onDeleteArmy(army.value.id)">Remove</button>
           </div>
+        </div>
+        <div>
+          <button (click)="openModal()" class="btn btn-outline-secondary addArmyButton">
+            <i class="fas fa-plus"></i>
+          </button>
         </div>
       </div>
 
@@ -39,12 +34,12 @@
       style="background-image: url(/assets/Chaos_Background.jpg);">
 
       <div *ngIf="isChaos==1" class="row">
-        <div *ngFor="let army of armies | keyvalue" class="card card-Armies" style="width: 10rem;">
+        <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
           <img class="card-img-top" src="..." alt="">
           <div class="card-body">
             <h5 class="card-title">{{army.value.name}}</h5>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="" class="btn btn-primary" (click)="onDeleteArmy(army.value.id)">Remove</a>
+            <a href="" class="btn btn-primary card-Armies">Remove</a>
           </div>
         </div>
       </div>
@@ -61,7 +56,7 @@
       style="background-image: url(/assets/Xenos-Background.jpg);">
 
       <div *ngIf="isXenos==1" class="row">
-        <div *ngFor="let army of armies | keyvalue" class="card card-Armies" style="width: 10rem;">
+        <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
           <img class="card-img-top" src="..." alt="">
           <div class="card-body">
             <h5 class="card-title">{{army.value.name}}</h5>
@@ -84,16 +79,6 @@
       <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">
         Armies</button>
 
-      <div *ngIf="!showArmyInput">
-        <button (click)="showHideAddArmy()" class="btn btn-outline-secondary">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
-
-      <div *ngIf="showArmyInput">
-        <input type="text" class="form-control col-md-4" (keydown.enter)="onAddArmy($event.target.value)">
-      </div>
-
       <div class="dropdown-menu">
         <button class="dropdown-item" type="button" *ngFor="let army of armies | keyvalue">
           {{ army.value.name }} </button>
@@ -102,3 +87,4 @@
 
 
   </div>
+  

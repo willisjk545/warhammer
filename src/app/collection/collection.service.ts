@@ -27,7 +27,7 @@ export class CollectionService {
 
   saveNewArmy(armyName)
   {
-    return this.http.post('https://localhost:5001/api/armies', {"Name":armyName})
+    return this.http.post('https://localhost:5001/api/armies', {"Name":armyName, "FactionID":1})
   }
 
   deleteArmy(armyID) {
