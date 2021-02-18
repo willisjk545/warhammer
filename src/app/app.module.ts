@@ -10,9 +10,11 @@ import { CardComponent } from './card/card.component';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { AddArmyModalComponent } from './modal/add-army-modal/add-army-modal.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { CollectionUnitsComponent } from './collection/collection-units/collection-units.component';
 
 const appRoutes: Routes = [
-  {path: 'collection', component: CollectionComponent}
+  {path: 'collection', component: CollectionComponent},
+  {path: 'collection-units/:id', component: CollectionUnitsComponent}
 ]
 
 @NgModule({
@@ -21,7 +23,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     CollectionComponent,
     CardComponent,
-    AddArmyModalComponent
+    AddArmyModalComponent,
+    CollectionUnitsComponent
   ],
   imports: [
     BrowserModule,

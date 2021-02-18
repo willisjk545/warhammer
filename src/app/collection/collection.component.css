@@ -22,8 +22,14 @@
 .card-Armies{
     margin: 1rem;
     border: solid;
-    border-color: darkgray;
+    border-color: black;
     width: 10rem;
+    background-color: lightgrey;
+}
+
+.card-Row{
+    place-content: center;
+    padding: 1rem;
 }
 
 .addArmyButton{

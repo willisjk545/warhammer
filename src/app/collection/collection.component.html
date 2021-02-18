@@ -5,13 +5,14 @@
       [ngClass]="{'col-md-12': isImperium==1, 'col-md-4': isImperium==2, 'd-none': isImperium==3}"
       style="background-image: url(/assets/Imperium_Background.jpg);">
 
-      <div *ngIf="isImperium==1" class="row">
+      <div *ngIf="isImperium==1" class="row card-Row">
         <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
           <img class="card-img-top" src="" alt="">
           <div class="card-body">
             <h5 class="card-title">{{army.value.name}}</h5>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
             <button class="btn btn-primary" (click)="onDeleteArmy(army.value.id)">Remove</button>
+            <a [routerLink]="['/collection-units', army.value.id]"><button class="btn btn-primary">Select</button></a>
           </div>
         </div>
         <div>
