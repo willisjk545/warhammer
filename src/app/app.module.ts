@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AgGridModule } from 'ag-grid-angular';
 import { HeaderComponent } from './Navigation/header/header.component';
 import { CollectionComponent } from './collection/collection.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgGridModule.withComponents([])
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent],

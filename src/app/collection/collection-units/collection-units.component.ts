@@ -14,7 +14,12 @@ export class CollectionUnitsComponent implements OnInit {
 
   units$: Observable<any>;
   armyIDParam: any;
-  units: object;
+
+  columnDefs = [
+    { header: 'Name', field: 'name', width: 800 },
+    { header: 'Type', field: 'type', width: 200 },
+    { header: 'Quantity', field: 'quantity', width: 100}
+  ];
 
   constructor( private collectionSerivice: CollectionService,
                private activatedRoute: ActivatedRoute) { }
@@ -27,16 +32,8 @@ export class CollectionUnitsComponent implements OnInit {
     this.units$ = this.activatedRoute.paramMap.pipe(
       switchMap((params) => {
         const armyIDParam = params.get('id')
-        return this.collectionSerivice.getUnitsbyArmyID(armyIDParam)
+        return this.collectionSerivice.getUnitsbyArmyID(armyIDParam) 
       })
     )
-    //console.log('units', this.units$)
-    }
-  //   this.activatedRoute.paramMap.pipe(
-  //     switchMap((params) => {
-  //       const armyIDParam = params.get('id')
-  //       return this.collectionSerivice.getUnitsbyArmyID(armyIDParam)
-  //     })
-  //   ).subscribe((unitsData) => this.units = unitsData)
-   
+  }  
 }
