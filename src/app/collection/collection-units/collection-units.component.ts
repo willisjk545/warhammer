@@ -3,22 +3,35 @@ import { CollectionService } from '../collection.service';
 import { ActivatedRoute } from '@angular/router'
 import { switchMap, take, tap } from 'rxjs/operators'
 import { Observable } from 'rxjs';
-
+import { BtnCellRendererComponent } from 'src/app/agGrid-Elements/btn-cell-renderer/btn-cell-renderer.component';
 
 @Component({
   selector: 'app-collection-units',
   templateUrl: './collection-units.component.html',
-  styleUrls: ['./collection-units.component.css']
+  styleUrls: ['./collection-units.component.css'],
 })
 export class CollectionUnitsComponent implements OnInit {
 
   units$: Observable<any>;
   armyIDParam: any;
 
+  frameworkComponents = {
+    btnCellRenderer: BtnCellRendererComponent
+  };
+
   columnDefs = [
-    { header: 'Name', field: 'name', width: 800 },
-    { header: 'Type', field: 'type', width: 200 },
-    { header: 'Quantity', field: 'quantity', width: 100}
+    { headerName: 'Name', field: 'name', width: 400 },
+    { headerName: 'Type', field: 'type', width: 200 },
+    { headerName: 'Quantity', field: 'quantity', width: 100},
+    { field: '', 
+     cellRenderer: 'btnCellRenderer',
+      cellRendererParams: {
+        clicked: function(field: any) {
+          alert('${field} was clicked')
+        },
+        iconClass: '<i class="fas fa-minus"></i>'
+      } 
+    }
   ];
 
   constructor( private collectionSerivice: CollectionService,

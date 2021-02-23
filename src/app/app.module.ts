@@ -12,6 +12,7 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { AddArmyModalComponent } from './modal/add-army-modal/add-army-modal.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { CollectionUnitsComponent } from './collection/collection-units/collection-units.component';
+import { BtnCellRendererComponent } from './agGrid-Elements/btn-cell-renderer/btn-cell-renderer.component';
 
 const appRoutes: Routes = [
   {path: 'collection', component: CollectionComponent},
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     CollectionComponent,
     CardComponent,
     AddArmyModalComponent,
-    CollectionUnitsComponent
+    CollectionUnitsComponent,
+    BtnCellRendererComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([BtnCellRendererComponent])
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent],

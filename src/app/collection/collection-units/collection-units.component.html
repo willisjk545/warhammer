@@ -6,7 +6,8 @@
         class="ag-theme-alpine"
         [rowData]="units$ | async"
         [columnDefs]="columnDefs"
-        rowSelection='single'>
+        [frameworkComponents]="frameworkComponents"
+        (gridReady)="onGridReady($event)">
       </ag-grid-angular>
     </div>
   </div>
