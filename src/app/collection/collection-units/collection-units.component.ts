@@ -24,12 +24,33 @@ export class CollectionUnitsComponent implements OnInit {
     { headerName: 'Type', field: 'type', width: 200 },
     { headerName: 'Quantity', field: 'quantity', width: 100},
     { field: '', 
+      width: 50,
+     cellRenderer: 'btnCellRenderer',
+      cellRendererParams: {
+        clicked: function(field: any) {
+          this.onDeleteUnit(field)
+        },
+        iconClass: '<i class="fas fa-minus"></i>'
+      } 
+    },
+    { field: '',
+      width: 54,
      cellRenderer: 'btnCellRenderer',
       cellRendererParams: {
         clicked: function(field: any) {
           alert('${field} was clicked')
         },
-        iconClass: '<i class="fas fa-minus"></i>'
+        iconClass: '<i class="fas fa-edit"></i>'
+      } 
+    },
+    { field: '',
+      width: 110,
+     cellRenderer: 'btnCellRenderer',
+      cellRendererParams: {
+        clicked: function(field: any) {
+          alert('${field} was clicked')
+        },
+        iconClass: 'Wargear'
       } 
     }
   ];
@@ -49,4 +70,10 @@ export class CollectionUnitsComponent implements OnInit {
       })
     )
   }  
+
+  onDeleteUnit(unitID: any): void{
+    // this.collectionSerivice.deleteUnit(unitID)
+    // .subscribe();
+    console.log("testdelete")
+  }
 }

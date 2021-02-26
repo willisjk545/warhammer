@@ -68,7 +68,6 @@ export class CollectionComponent implements OnInit {
   onDeleteArmy(armyID: number): void{
     this.collectionService.deleteArmy(armyID)
     .subscribe();
-    this.router.navigate(['collection/'])
   }
 
   openModal(): void {

@@ -38,5 +38,9 @@ export class CollectionService {
     return this.http.get('https://localhost:5001/api/units/byArmyID/' + armyID)
   }
 
+  deleteUnit(unitID) {
+    return this.http.delete('https://localhost:5001/api/units/' + unitID)
+  }
+
   
 }
