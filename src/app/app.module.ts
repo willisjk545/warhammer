@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { HeaderComponent } from './Navigation/header/header.component';
 import { CollectionComponent } from './collection/collection.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
@@ -13,10 +14,13 @@ import { AddArmyModalComponent } from './modal/add-army-modal/add-army-modal.com
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { CollectionUnitsComponent } from './collection/collection-units/collection-units.component';
 import { BtnCellRendererComponent } from './agGrid-Elements/btn-cell-renderer/btn-cell-renderer.component';
+import { CollectionWargearComponent } from './collection/collection-wargear/collection-wargear.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {path: 'collection', component: CollectionComponent},
-  {path: 'collection-units/:id', component: CollectionUnitsComponent}
+  {path: 'collection-units/:id', component: CollectionUnitsComponent},
+  {path: 'collection-wargear', component: CollectionWargearComponent}
 ]
 
 @NgModule({
@@ -27,7 +31,8 @@ const appRoutes: Routes = [
     CardComponent,
     AddArmyModalComponent,
     CollectionUnitsComponent,
-    BtnCellRendererComponent
+    BtnCellRendererComponent,
+    CollectionWargearComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,9 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-    AgGridModule.withComponents([BtnCellRendererComponent])
+    AgGridModule.withComponents([BtnCellRendererComponent]),
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent],

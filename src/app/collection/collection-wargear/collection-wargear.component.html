@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row" style="background-color: lightgray; height: 100vh;">
+        <div class="col-md-3">
+            <div class="dropdown pt-5">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                  Ranged Weapons
+                </button>
+                <div class="dropdown-menu">
+                    <div
+                        cdkDropList
+                        #todoList="cdkDropList"
+                        [cdkDropListData]="rangedWeapons"
+                        [cdkDropListConnectedTo]="[doneList]"
+                        class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let rangedWeapons of rangedWeapons" cdkDrag>{{rangedWeapons}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown pt-5">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                  Mellee Weapons
+                </button>
+                <div class="dropdown-menu">
+                    <div
+                        cdkDropList
+                        #todoList="cdkDropList"
+                        [cdkDropListData]="melleeWeapons"
+                        [cdkDropListConnectedTo]="[doneList]"
+                        class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let melleeWeapon of melleeWeapons" cdkDrag>{{melleeWeapon}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown pt-5">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                  Equipment
+                </button>
+                <div class="dropdown-menu">
+                    <div
+                        cdkDropList
+                        #todoList="cdkDropList"
+                        [cdkDropListData]="equipmentItems"
+                        [cdkDropListConnectedTo]="[doneList]"
+                        class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let equipmentItem of equipmentItems" cdkDrag>{{equipmentItem}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="wargear-avatar-img" style="background-image: url('/assets/SpaceMarine.png');">
+                <div
+                    cdkDropList
+                    #doneList="cdkDropList"
+                    [cdkDropListData]="done"
+                    [cdkDropListConnectedTo]="[todoList]"
+                    class="end-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

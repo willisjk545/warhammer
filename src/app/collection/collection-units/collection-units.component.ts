@@ -48,7 +48,7 @@ export class CollectionUnitsComponent implements OnInit {
      cellRenderer: 'btnCellRenderer',
       cellRendererParams: {
         clicked: function(field: any) {
-          alert('${field} was clicked')
+          window.location.href = '/collection-wargear'
         },
         iconClass: 'Wargear'
       } 
