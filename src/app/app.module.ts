@@ -16,6 +16,7 @@ import { CollectionUnitsComponent } from './collection/collection-units/collecti
 import { BtnCellRendererComponent } from './agGrid-Elements/btn-cell-renderer/btn-cell-renderer.component';
 import { CollectionWargearComponent } from './collection/collection-wargear/collection-wargear.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditUnitModalComponent } from './modal/edit-unit-modal/edit-unit-modal.component';
 
 const appRoutes: Routes = [
   {path: 'collection', component: CollectionComponent},
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     AddArmyModalComponent,
     CollectionUnitsComponent,
     BtnCellRendererComponent,
-    CollectionWargearComponent
+    CollectionWargearComponent,
+    EditUnitModalComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,6 @@ const appRoutes: Routes = [
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent],
-  entryComponents: [AddArmyModalComponent]
+  entryComponents: [AddArmyModalComponent, EditUnitModalComponent]
 })
 export class AppModule { }

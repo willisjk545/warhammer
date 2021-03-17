@@ -34,8 +34,8 @@ export class CollectionService {
     return this.http.delete('https://localhost:5001/api/armies/' + armyID)
   }
 
-  getUnitsbyArmyID(armyID) {
-    return this.http.get('https://localhost:5001/api/units/byArmyID/' + armyID)
+  getUnitsbyArmyID(armyID): Observable<any[]> {
+    return this.http.get<any[]>('https://localhost:5001/api/units/byArmyID/' + armyID)
   }
 
   deleteUnit(unitID) {

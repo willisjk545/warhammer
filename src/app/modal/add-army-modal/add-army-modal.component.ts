@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventEmitter } from 'events';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { CollectionService } from 'src/app/collection/collection.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
@@ -18,21 +18,15 @@ export class AddArmyModalComponent implements OnInit {
 
 
   constructor(private collectionService: CollectionService,
-              private modalService: BsModalService,
-              private router: Router) { }
+              private modalService: BsModalService) { }
 
   ngOnInit() {
-  }
-
-  onArmyNameSave(armyName: string): void {
-      // this.event.emit()
   }
 
   onAddArmy(armyName): void{
     this.collectionService.saveNewArmy(armyName)
     .subscribe((newArmyData) => newArmyData)
     this.closeModal();
-    this.router.navigate(['collection/'])
   }
 
   closeModal(): void {
