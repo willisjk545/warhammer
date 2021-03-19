@@ -17,7 +17,7 @@ export class CollectionUnitsComponent implements OnInit {
   units$: Observable<any[]>;
   armyIDParam: any;
   onClickDeleteHandler = (id:any) => this.onDeleteUnit.call(this, id);
-  onClickOpenModal = (id:number) => this.openModal.call(this, id);
+  onClickOpenModal = (id:number) => this.openEditModal.call(this, id);
   modalRef: BsModalRef;
   list: any[] = [];
 
@@ -80,12 +80,16 @@ export class CollectionUnitsComponent implements OnInit {
     .subscribe();
   }
 
-  openModal(unitID: number): void {
+  openEditModal(unitID: number): void {
 
     this.units$.pipe(
       map((unfilteredData) => this.filterData(unfilteredData, unitID)),
       tap((finalData) => {this.modalRef = this.modalService.show(EditUnitModalComponent, {initialState: {currentUnit:finalData}})})
     ).subscribe()
+  }
+
+  openAddModal(): void {
+    this.modalRef = this.modalService.show(EditUnitModalComponent);
   }
 
  filterData(unfilteredData: any[], unitID: number) { 

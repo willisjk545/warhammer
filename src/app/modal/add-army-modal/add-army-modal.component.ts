@@ -31,7 +31,7 @@ export class AddArmyModalComponent implements OnInit {
 
   closeModal(): void {
     this.modalService.hide();
-    
+
  }
 
 }
