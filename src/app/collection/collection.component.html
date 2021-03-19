@@ -1,6 +1,5 @@
-<div class="container">
-  <div class="row">
 
+  <div class="row">
     <div class="col-md-4 p-0 faction-Background-img"
       [ngClass]="{'col-md-12': isImperium==1, 'col-md-4': isImperium==2, 'd-none': isImperium==3}"
       style="background-image: url(/assets/Imperium_Background.jpg);">
@@ -9,17 +8,17 @@
         <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
           <img class="card-img-top" src="" alt="">
           <div class="card-body">
-            <h5 class="card-title">{{army.value.name}}</h5>
+            <h5 class="card-title card-title-text">{{army.value.name}}</h5>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <button class="btn btn-primary" (click)="onDeleteArmy(army.value.id)">Remove</button>
-            <a [routerLink]="['/collection-units', army.value.id]"><button class="btn btn-primary">Select</button></a>
+            <button class="btn btn-primary card-buttons" (click)="onDeleteArmy(army.value.id)"><i class="fas fa-minus"></i></button>
+            <a [routerLink]="['/collection-units', army.value.id]"><button class="btn btn-primary card-buttons"><i class="fas fa-check"></i></button></a>
           </div>
         </div>
-        <div>
+
           <button (click)="openModal()" class="btn btn-outline-secondary addArmyButton">
             <i class="fas fa-plus"></i>
           </button>
-        </div>
+
       </div>
 
       <button (click)='onFactionImperium()' *ngIf="isImperium==2" class="btn-faction">
@@ -40,7 +39,7 @@
           <div class="card-body">
             <h5 class="card-title">{{army.value.name}}</h5>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="" class="btn btn-primary card-Armies">Remove</a>
+            <a href="" class="btn btn-primary card-Armies"><i class="fas fa-minus"></i></a>
           </div>
         </div>
       </div>
@@ -62,7 +61,7 @@
           <div class="card-body">
             <h5 class="card-title">{{army.value.name}}</h5>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="#" class="btn btn-primary">Remove</a>
+            <a href="#" class="btn btn-primary"><i class="fas fa-minus"></i></a>
           </div>
         </div>
       </div>
@@ -75,17 +74,8 @@
       </button>
     </div>
   </div>
-  <div class="input-group" *ngIf="isImperium==1">
-    <div class="input-group-prepend">
-      <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">
-        Armies</button>
-
-      <div class="dropdown-menu">
-        <button class="dropdown-item" type="button" *ngFor="let army of armies | keyvalue">
-          {{ army.value.name }} </button>
-      </div>
-    </div>
 
 
-  </div>
+
+ 
   
