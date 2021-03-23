@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CollectionService } from './collection.service'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AddArmyModalComponent } from '../modal/add-army-modal/add-army-modal.component';
@@ -66,9 +66,20 @@ export class CollectionComponent implements OnInit {
   onDeleteArmy(armyID: number): void{
     this.collectionService.deleteArmy(armyID)
     .subscribe();
+    this.closeModal();
+  }
+
+  closeModal(): void {
+    this.modalRef.hide();
   }
 
   openModal(): void {
     this.modalRef = this.modalService.show(AddArmyModalComponent);
  }
+
+ openConfirmModal(template: TemplateRef<any>, armyID: number): void {
+  const test = {id: armyID};
+  this.modalRef = this.modalService.show(template, {initialState: test, class: 'modal-sm'});
+  }
+    
 }
