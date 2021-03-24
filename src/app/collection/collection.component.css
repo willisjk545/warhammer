@@ -18,34 +18,7 @@
     left: 25%;
 }
 
-.card-Armies{
-    margin: 1rem;
-    border: solid;
-    border-color: black;
-    width: 10rem;
-    background-color: lightgrey;
-}
 
-.card-Row{
-    place-content: center;
-    padding: 1rem;
-}
-
-.addArmyButton{
-    margin: 1rem;
-    border: solid;
-    border-color: black;
-    width: 10rem;
-}
-
-.card-title-text{
-    text-align: center;
-}
-
-.card-buttons {
-    margin: 0.5rem;
-    vertical-align: bottom;
-}
 
 
 

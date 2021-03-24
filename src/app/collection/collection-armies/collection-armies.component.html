@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-12">
+    <div class="p-0 faction-Background-img"
+    [ngClass]="{'background-Imperium': factionID==1 , 'background-Chaos': factionID==2, 'background-Xenos': factionID==3}">
+    
+
+    <div class="row card-Row">
+        <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
+          <img class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title card-title-text">{{army.value.name}}</h5>
+            <button class="btn btn-primary card-buttons"  (click)="openConfirmModal(template, army.value.id)"><i class="fas fa-minus"></i></button>
+            <a [routerLink]="['/collection-units', army.value.id]"><button class="btn btn-primary card-buttons"><i class="fas fa-check"></i></button></a>
+          </div>
+        </div>
+
+          <button (click)="openModal()" class="btn btn-outline-secondary addArmyButton">
+            <i class="fas fa-plus"></i>
+          </button>
+
+      </div>
+</div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-body text-center">
+      <p>Delete Army?</p>
+      <button type="button" class="btn btn-default" (click)="onDeleteArmy(modalService.config.initialState.id)">Yes</button>
+      <button type="button" class="btn btn-primary" (click)="closeModal()" >No</button>
+    </div>
+  </ng-template>   

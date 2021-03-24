@@ -17,11 +17,14 @@ import { BtnCellRendererComponent } from './agGrid-Elements/btn-cell-renderer/bt
 import { CollectionWargearComponent } from './collection/collection-wargear/collection-wargear.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditUnitModalComponent } from './modal/edit-unit-modal/edit-unit-modal.component';
+import { CollectionArmiesComponent } from './collection/collection-armies/collection-armies.component';
 
 const appRoutes: Routes = [
   {path: 'collection', component: CollectionComponent},
   {path: 'collection-units/:id', component: CollectionUnitsComponent},
-  {path: 'collection-wargear', component: CollectionWargearComponent}
+  {path: 'collection-wargear', component: CollectionWargearComponent},
+  {path: 'collection-armies/:id', component: CollectionArmiesComponent},
+
 ]
 
 @NgModule({
@@ -34,12 +37,12 @@ const appRoutes: Routes = [
     CollectionUnitsComponent,
     BtnCellRendererComponent,
     CollectionWargearComponent,
-    EditUnitModalComponent
+    EditUnitModalComponent,
+    CollectionArmiesComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    // Needed for http Requests
     HttpClientModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,

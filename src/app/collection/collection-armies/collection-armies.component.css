@@ -1,0 +1,49 @@
+.background-Imperium {
+    background-image: url(/assets/Imperium_Background.jpg);
+}
+
+.background-Chaos {
+    background-image: url(/assets/Chaos_Background.jpg);
+}
+
+.background-Xenos {
+    background-image: url(/assets/Xenos-Background.jpg);
+}
+
+.card-Armies{
+    margin: 1rem;
+    border: solid;
+    border-color: black;
+    width: 10rem;
+    background-color: lightgrey;
+}
+
+.card-Row{
+    place-content: center;
+    padding: 1rem;
+}
+
+.addArmyButton{
+    margin: 1rem;
+    border: solid;
+    border-color: black;
+    width: 10rem;
+}
+
+.card-title-text{
+    text-align: center;
+}
+
+.card-buttons {
+    margin: 0.5rem;
+    vertical-align: bottom;
+}
+
+.faction-Background-img {
+    max-width: 100%;
+    background-size: cover;
+    height: 100vh;
+    /* opacity: 70%; */
+    border: solid;
+    border-color: black;
+}

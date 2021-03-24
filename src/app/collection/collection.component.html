@@ -1,86 +1,37 @@
 
-  <div class="row">
-    <div class="col-md-4 p-0 faction-Background-img"
-      [ngClass]="{'col-md-12': isImperium==1, 'col-md-4': isImperium==2, 'd-none': isImperium==3}"
-      style="background-image: url(/assets/Imperium_Background.jpg);">
-
-      <div *ngIf="isImperium==1" class="row card-Row">
-        <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
-          <img class="card-img-top" src="" alt="">
-          <div class="card-body">
-            <h5 class="card-title card-title-text">{{army.value.name}}</h5>
-            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <button class="btn btn-primary card-buttons"  (click)="openConfirmModal(template, army.value.id)"><i class="fas fa-minus"></i></button>
-            <a [routerLink]="['/collection-units', army.value.id]"><button class="btn btn-primary card-buttons"><i class="fas fa-check"></i></button></a>
-          </div>
-        </div>
-
-          <button (click)="openModal()" class="btn btn-outline-secondary addArmyButton">
-            <i class="fas fa-plus"></i>
-          </button>
-
-      </div>
-
-      <button (click)='onFactionImperium()' *ngIf="isImperium==2" class="btn-faction">
-        <img src="/assets/Imperial_Eagle.png" alt="ImperialEagle" class="btn-faction-img">
-        <h2>
-          Imperium
-        </h2>
-      </button>
-
-    </div>
-    <div class="col-md-4 p-0 faction-Background-img"
-      [ngClass]="{'col-md-12': isChaos==1, 'col-md-4': isChaos==2, 'd-none': isChaos==3}"
-      style="background-image: url(/assets/Chaos_Background.jpg);">
-
-      <div *ngIf="isChaos==1" class="row">
-        <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
-          <img class="card-img-top" src="..." alt="">
-          <div class="card-body">
-            <h5 class="card-title">{{army.value.name}}</h5>
-            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="" class="btn btn-primary card-Armies"><i class="fas fa-minus"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <button (click)='onFactionChaos()' *ngIf="isChaos==2" class="btn-faction">
-        <img src="/assets/Icon_Of_Chaos.jpg" alt="IconOfChaos" class="btn-faction-img">
-        <h2>
-          Chaos
-        </h2>
-      </button>
-    </div>
-    <div class="col-md-4 p-0 faction-Background-img"
-      [ngClass]="{'col-md-12': isXenos==1, 'col-md-4': isXenos==2, 'd-none': isXenos==3}"
-      style="background-image: url(/assets/Xenos-Background.jpg);">
-
-      <div *ngIf="isXenos==1" class="row">
-        <div *ngFor="let army of armies | keyvalue" class="card card-Armies">
-          <img class="card-img-top" src="..." alt="">
-          <div class="card-body">
-            <h5 class="card-title">{{army.value.name}}</h5>
-            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="#" class="btn btn-primary"><i class="fas fa-minus"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <button (click)='onFactionXenos()' *ngIf="isXenos==2" class="btn-faction">
-        <img src="/assets/Xenos_icon.jpg" alt="XenosIcon" class="btn-faction-img">
-        <h2>
-          Xenos
-        </h2>
-      </button>
-    </div>
+<div class="row">
+    
+  <div class="col-md-4 p-0 faction-Background-img"
+    style="background-image: url(/assets/Imperium_Background.jpg);">
+    <a [routerLink]="['/collection-armies', 1]"><button class="btn-faction">
+      <img src="/assets/Imperial_Eagle.png" alt="ImperialEagle" class="btn-faction-img">
+      <h2>
+        Imperium
+      </h2>
+    </button></a>
+  </div>
+  
+  <div class="col-md-4 p-0 faction-Background-img"
+    style="background-image: url(/assets/Chaos_Background.jpg);">
+    <a [routerLink]="['/collection-armies', 2]"><button class="btn-faction">
+      <img src="/assets/Icon_Of_Chaos.jpg" alt="IconOfChaos" class="btn-faction-img">
+      <h2>
+        Chaos
+      </h2>
+    </button></a>
   </div>
 
-  <ng-template #template>
-    <div class="modal-body text-center">
-      <p>Delete Army?</p>
-      <button type="button" class="btn btn-default" (click)="onDeleteArmy(modalService.config.initialState.id)">Yes</button>
-      <button type="button" class="btn btn-primary" (click)="closeModal()" >No</button>
-    </div>
-  </ng-template>   
+  <div class="col-md-4 p-0 faction-Background-img"
+    style="background-image: url(/assets/Xenos-Background.jpg);">
+    <a [routerLink]="['/collection-armies', 3]"><button class="btn-faction">
+      <img src="/assets/Xenos_icon.jpg" alt="XenosIcon" class="btn-faction-img">
+      <h2>
+        Xenos
+      </h2>
+    </button></a>
+  </div>
+  
+</div>
+
 
   
