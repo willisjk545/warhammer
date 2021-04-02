@@ -17,7 +17,6 @@ export class CollectionService {
 
   getArmies(){
     const inboundData = this.http.get('https://localhost:5001/api/armies');
-    console.log(inboundData, "inboundData");
     return inboundData;
   }
 
@@ -56,7 +55,7 @@ export class CollectionService {
       "Name": unitName, 
       "Type": unitType, 
       "Quantity": quantity,
-      "ArmyID": 1})
+      "ArmyID": 1033})
   }
 
   

@@ -5,7 +5,7 @@ import { AddArmyModalComponent } from 'src/app/modal/add-army-modal/add-army-mod
 import { CollectionService } from '../collection.service';
 import {ActivatedRoute} from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-collection-armies',
@@ -32,19 +32,16 @@ export class CollectionArmiesComponent implements OnInit {
    this.onGetArmyByFactionID(this.factionID)
   }
 
-  showArmies(): void {
-    this.collectionService.getArmies()
+  onGetArmyByFactionID(factionID: string): void {
+    this.collectionService.getArmyByFactionId(factionID)
     .subscribe((armiesData) => this.armies = armiesData)
   }
 
-  onGetArmyByFactionID(factionID: string): void {
-    this.collectionService.getArmyByFactionId(factionID)
-    .subscribe((Armies) => this.armies = Armies)
-  }
-
   onDeleteArmy(armyID: number): void{
-    this.collectionService.deleteArmy(armyID)
+    this.collectionService.deleteArmy(armyID).pipe(
+      tap(() => this.onGetArmyByFactionID(this.factionID)) )
     .subscribe();
+    
     this.closeModal();
   }
 
@@ -53,14 +50,18 @@ export class CollectionArmiesComponent implements OnInit {
   }
 
   openModal(): void {
-    this.modalRef = this.modalService.show(AddArmyModalComponent);
+    this.modalRef = this.modalService
+    .show(AddArmyModalComponent);
+
+    this.modalRef.onHidden.pipe(
+      take(1),
+      tap((() => this.onGetArmyByFactionID(this.factionID)))
+    ).subscribe();
  }
 
  openConfirmModal(template: TemplateRef<any>, armyID: number): void {
   const test = {id: armyID};
   this.modalRef = this.modalService.show(template, {initialState: test, class: 'modal-sm'});
   }
-
-
 
 }

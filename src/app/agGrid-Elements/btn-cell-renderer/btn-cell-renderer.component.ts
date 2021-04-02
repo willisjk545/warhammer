@@ -19,7 +19,6 @@ export class BtnCellRendererComponent implements ICellRendererAngularComp, OnDes
 
   btnClickedHandler() {
     this.params.clicked(this.params.value);
-    console.log(this.params.clicked(this.params.value))
   }
 
   ngOnDestroy() {
