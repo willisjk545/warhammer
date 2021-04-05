@@ -58,5 +58,8 @@ export class CollectionService {
       "ArmyID": 1033})
   }
 
+  getUnitByUnitID(unitID: number) {
+    return this.http.get('https://localhost:5001/api/units/' + unitID)
+  }
   
 }

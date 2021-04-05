@@ -55,7 +55,7 @@ export class CollectionArmiesComponent implements OnInit {
 
     this.modalRef.onHidden.pipe(
       take(1),
-      tap((() => this.onGetArmyByFactionID(this.factionID)))
+      tap(() => this.onGetArmyByFactionID(this.factionID))
     ).subscribe();
  }
 

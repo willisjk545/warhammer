@@ -19,16 +19,16 @@ export class CollectionUnitsComponent implements OnInit {
   onClickDeleteHandler = (id:any) => this.onDeleteUnit.call(this, id);
   onClickOpenModal = (id:number) => this.openEditModal.call(this, id);
   modalRef: BsModalRef;
-  list: any[] = [];
+  unitsData: any;
 
   frameworkComponents = {
     btnCellRenderer: BtnCellRendererComponent
   };
 
   columnDefs = [
-    { headerName: 'Name', field: 'name', width: 400 },
-    { headerName: 'Type', field: 'type', width: 200 },
-    { headerName: 'Quantity', field: 'quantity', width: 100},
+    { headerName: 'Name', field: 'name', width: 500 },
+    { headerName: 'Type', field: 'type', width: 300 },
+    { headerName: 'Quantity', field: 'quantity', width: 200},
     { headerName: '',
       field: 'id',
       width: 50,
@@ -46,17 +46,17 @@ export class CollectionUnitsComponent implements OnInit {
         clicked: this.onClickOpenModal,
         iconClass: '<i class="fas fa-edit"></i>'
       }
-    },
-    { field: '',
-      width: 110,
-      cellRenderer: 'btnCellRenderer',
-      cellRendererParams: {
-        clicked: function() {
-          window.location.href = '/collection-wargear'
-        },
-        iconClass: 'Wargear'
-      }
     }
+    // { field: '',
+    //   width: 110,
+    //   cellRenderer: 'btnCellRenderer',
+    //   cellRendererParams: {
+    //     clicked: function() {
+    //       window.location.href = '/collection-wargear'
+    //     },
+    //     iconClass: 'Wargear'
+    //   }
+    // }
   ];
 
   constructor( private collectionSerivice: CollectionService,
@@ -67,12 +67,11 @@ export class CollectionUnitsComponent implements OnInit {
   }
 
   onGridReady(params) {
-    this.units$ = this.activatedRoute.paramMap.pipe(
-      switchMap((params) => {
-        const armyIDParam = params.get('id')
-        return this.collectionSerivice.getUnitsbyArmyID(armyIDParam)
-      })
-    )
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.armyIDParam = params.get('id');
+    })
+
+    this.onGetUnitsByArmyID(this.armyIDParam);
   }
 
   onDeleteUnit(unitID: number): void{
@@ -81,18 +80,26 @@ export class CollectionUnitsComponent implements OnInit {
   }
 
   openEditModal(unitID: number): void {
+    
+    this.modalRef = this.modalService.show(EditUnitModalComponent, {initialState: {unitID: unitID}});
 
-    this.units$.pipe(
-      map((unfilteredData) => this.filterData(unfilteredData, unitID)),
-      tap((finalData) => {this.modalRef = this.modalService.show(EditUnitModalComponent, {initialState: {currentUnit:finalData}})})
-    ).subscribe()
+    this.modalRef.onHidden.pipe(
+      take(1),
+      tap(() => this.onGetUnitsByArmyID(this.armyIDParam))
+    ).subscribe();
   }
 
   openAddModal(): void {
     this.modalRef = this.modalService.show(EditUnitModalComponent);
+
+    this.modalRef.onHidden.pipe(
+      take(1),
+      tap(() => this.onGetUnitsByArmyID(this.armyIDParam))
+    ).subscribe();
   }
 
- filterData(unfilteredData: any[], unitID: number) { 
-  return unfilteredData.filter((currentItem) => {
-  return (currentItem.id == unitID)})}
+  onGetUnitsByArmyID(armyID: any): void {
+    this.collectionSerivice.getUnitsbyArmyID(armyID)
+    .subscribe((unitsData) => this.unitsData = unitsData)
+  }
 }

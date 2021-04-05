@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { CollectionService } from 'src/app/collection/collection.service';
 
 @Component({
@@ -21,13 +22,18 @@ export class EditUnitModalComponent implements OnInit {
               private collectionService: CollectionService) { }
 
   ngOnInit() {
-    if (this.currentUnit[0].id) {
-      this.typeName = this.currentUnit[0].type;
-      this.unitName = this.currentUnit[0].name;
-      this.quantity = this.currentUnit[0].quantity;
-      this.unitID = this.currentUnit[0].id
-      this.armyID = this.currentUnit[0].armyID
+    if (this.unitID) {
+      this.collectionService.getUnitByUnitID(this.unitID).pipe(
+        tap((unitData) => {
+        this.currentUnit = unitData
+        this.typeName = this.currentUnit.type
+        this.unitName = this.currentUnit.name
+        this.quantity = this.currentUnit.quantity
+        this.unitID = this.currentUnit.id
+        this.armyID = this.currentUnit.armyID})
+      ).subscribe();
 
+  
       this.editMode = true
     }
     else {
@@ -53,7 +59,7 @@ export class EditUnitModalComponent implements OnInit {
   onAddNewUnit(): void {
     this.collectionService.saveNewUnit(this.unitName, this.typeName, this.quantity)
     .subscribe();
-
+    
     this.closeModal();
   }
 
