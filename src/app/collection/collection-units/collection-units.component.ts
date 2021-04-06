@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CollectionService } from '../collection.service';
 import { ActivatedRoute } from '@angular/router'
 import { map, switchMap, take, tap } from 'rxjs/operators'
@@ -14,12 +14,15 @@ import { EditUnitModalComponent } from 'src/app/modal/edit-unit-modal/edit-unit-
 })
 export class CollectionUnitsComponent implements OnInit {
 
+  //Not really an error
+  @ViewChild("template", { static: true }) template: TemplateRef;
   units$: Observable<any[]>;
   armyIDParam: any;
-  onClickDeleteHandler = (id:any) => this.onDeleteUnit.call(this, id);
+  onClickDeleteHandler = (id:any) => this.openConfirmModal.call(this, id);
   onClickOpenModal = (id:number) => this.openEditModal.call(this, id);
   modalRef: BsModalRef;
   unitsData: any;
+
 
   frameworkComponents = {
     btnCellRenderer: BtnCellRendererComponent
@@ -77,6 +80,8 @@ export class CollectionUnitsComponent implements OnInit {
   onDeleteUnit(unitID: number): void{
     this.collectionSerivice.deleteUnit(unitID)
     .subscribe();
+
+    this.closeModal();
   }
 
   openEditModal(unitID: number): void {
@@ -101,5 +106,19 @@ export class CollectionUnitsComponent implements OnInit {
   onGetUnitsByArmyID(armyID: any): void {
     this.collectionSerivice.getUnitsbyArmyID(armyID)
     .subscribe((unitsData) => this.unitsData = unitsData)
+  }
+
+  closeModal(): void {
+    this.modalRef.hide();
+  }
+
+  openConfirmModal(unitID: number): void {
+    const id = {id: unitID};
+    this.modalRef = this.modalService.show(this.template, {initialState: id, class: 'modal-sm'});
+
+     this.modalRef.onHidden.pipe(
+      take(1),
+      tap(() => this.onGetUnitsByArmyID(this.armyIDParam))
+    ).subscribe();
   }
 }

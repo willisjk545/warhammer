@@ -39,7 +39,7 @@ export class CollectionArmiesComponent implements OnInit {
 
   onDeleteArmy(armyID: number): void{
     this.collectionService.deleteArmy(armyID).pipe(
-      tap(() => this.onGetArmyByFactionID(this.factionID)) )
+      tap(() => this.onGetArmyByFactionID(this.factionID)))
     .subscribe();
     
     this.closeModal();
@@ -60,8 +60,8 @@ export class CollectionArmiesComponent implements OnInit {
  }
 
  openConfirmModal(template: TemplateRef<any>, armyID: number): void {
-  const test = {id: armyID};
-  this.modalRef = this.modalService.show(template, {initialState: test, class: 'modal-sm'});
+  const id = {id: armyID};
+  this.modalRef = this.modalService.show(template, {initialState: id, class: 'modal-sm'});
   }
 
 }
