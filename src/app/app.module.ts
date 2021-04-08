@@ -18,6 +18,7 @@ import { CollectionWargearComponent } from './collection/collection-wargear/coll
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditUnitModalComponent } from './modal/edit-unit-modal/edit-unit-modal.component';
 import { CollectionArmiesComponent } from './collection/collection-armies/collection-armies.component';
+import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.component';
 
 const appRoutes: Routes = [
   {path: 'collection', component: CollectionComponent},
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     BtnCellRendererComponent,
     CollectionWargearComponent,
     EditUnitModalComponent,
-    CollectionArmiesComponent
+    CollectionArmiesComponent,
+    ConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,6 @@ const appRoutes: Routes = [
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent],
-  entryComponents: [AddArmyModalComponent, EditUnitModalComponent]
+  entryComponents: [AddArmyModalComponent, EditUnitModalComponent, ConfirmModalComponent]
 })
 export class AppModule { }
