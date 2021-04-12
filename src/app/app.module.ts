@@ -21,10 +21,10 @@ import { CollectionArmiesComponent } from './collection/collection-armies/collec
 import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.component';
 
 const appRoutes: Routes = [
-  {path: 'collection', component: CollectionComponent},
-  {path: 'collection-units/:id', component: CollectionUnitsComponent},
+  {path: '', component: CollectionComponent},
+  {path: 'collection-units/:armyID/:factionID', component: CollectionUnitsComponent},
   {path: 'collection-wargear', component: CollectionWargearComponent},
-  {path: 'collection-armies/:id', component: CollectionArmiesComponent},
+  {path: 'collection-armies/:factionID', component: CollectionArmiesComponent},
 
 ]
 

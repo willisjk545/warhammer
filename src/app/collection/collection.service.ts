@@ -24,9 +24,9 @@ export class CollectionService {
     return this.http.get('https://localhost:5001/api/armies/byFactionID/' + factionId)
   }
 
-  saveNewArmy(armyName)
+  saveNewArmy(armyName: string, factionID: number)
   {
-    return this.http.post('https://localhost:5001/api/armies', {"Name":armyName, "FactionID":1})
+    return this.http.post('https://localhost:5001/api/armies', {"Name":armyName, "FactionID":factionID})
   }
 
   deleteArmy(armyID) {
@@ -50,12 +50,12 @@ export class CollectionService {
     "Quantity": quantity})
   }
 
-  saveNewUnit(unitName: string, unitType: string, quantity: number) {
+  saveNewUnit(unitName: string, unitType: string, quantity: number, armyID: number) {
     return this.http.post('https://localhost:5001/api/units', {
       "Name": unitName, 
       "Type": unitType, 
       "Quantity": quantity,
-      "ArmyID": 1033})
+      "ArmyID": armyID})
   }
 
   getUnitByUnitID(unitID: number) {

@@ -1,3 +1,10 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="">Factions</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Armies</li>
+  </ol>
+</nav>
+
 <div class="row">
     <div class="col-md-12">
     <div class="p-0 faction-Background-img"
@@ -10,7 +17,7 @@
           <div class="card-body">
             <h5 class="card-title card-title-text">{{army.value.name}}</h5>
             <button class="btn btn-primary card-buttons"  (click)="openConfirmModal(template, army.value.id)"><i class="fas fa-minus"></i></button>
-            <a [routerLink]="['/collection-units', army.value.id]"><button class="btn btn-primary card-buttons"><i class="fas fa-check"></i></button></a>
+            <a [routerLink]="['/collection-units', army.value.id, factionID]"><button class="btn btn-primary card-buttons"><i class="fas fa-check"></i></button></a>
           </div>
         </div>
 

@@ -17,6 +17,7 @@ export class CollectionUnitsComponent implements OnInit {
 
   units$: Observable<any[]>;
   armyIDParam: any;
+  factionIDParam: any;
   onClickDeleteHandler = (id:any) => this.openConfirmDeleteModal.call(this, id);
   onClickOpenModal = (id:number) => this.openEditModal.call(this, id);
   modalRef: BsModalRef;
@@ -69,7 +70,8 @@ export class CollectionUnitsComponent implements OnInit {
 
   onGridReady(params) {
     this.activatedRoute.paramMap.subscribe(params => {
-      this.armyIDParam = params.get('id');
+      this.armyIDParam = params.get('armyID')
+      this.factionIDParam = params.get('factionID');
     })
 
     this.onGetUnitsByArmyID(this.armyIDParam);
@@ -92,7 +94,7 @@ export class CollectionUnitsComponent implements OnInit {
   }
   
   openAddModal(): void {
-    this.modalRef = this.modalService.show(EditUnitModalComponent);
+    this.modalRef = this.modalService.show(EditUnitModalComponent, {initialState: {armyID: Number(this.armyIDParam)}});
     
     this.modalRef.onHidden.pipe(
       take(1),

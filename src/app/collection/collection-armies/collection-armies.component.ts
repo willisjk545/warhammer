@@ -26,7 +26,7 @@ export class CollectionArmiesComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
-      this.factionID = params.get('id')
+      this.factionID = params.get('factionID')
     })
 
    this.onGetArmyByFactionID(this.factionID)
@@ -50,8 +50,7 @@ export class CollectionArmiesComponent implements OnInit {
   }
 
   openModal(): void {
-    this.modalRef = this.modalService
-    .show(AddArmyModalComponent);
+    this.modalRef = this.modalService.show(AddArmyModalComponent, {initialState: {factionID: Number(this.factionID)}});
 
     this.modalRef.onHidden.pipe(
       take(1),

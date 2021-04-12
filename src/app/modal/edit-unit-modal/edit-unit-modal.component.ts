@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { CollectionService } from 'src/app/collection/collection.service';
 
 @Component({
@@ -57,7 +57,7 @@ export class EditUnitModalComponent implements OnInit {
   }
 
   onAddNewUnit(): void {
-    this.collectionService.saveNewUnit(this.unitName, this.typeName, this.quantity)
+    this.collectionService.saveNewUnit(this.unitName, this.typeName, this.quantity, this.armyID)
     .subscribe();
     
     this.closeModal();

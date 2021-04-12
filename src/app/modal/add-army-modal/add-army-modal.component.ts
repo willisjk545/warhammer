@@ -15,6 +15,7 @@ export class AddArmyModalComponent implements OnInit {
   public event: EventEmitter = new EventEmitter();
   armyName = new FormControl('');
   modalRef: BsModalRef;
+  factionID: number;
 
 
   constructor(private collectionService: CollectionService,
@@ -24,7 +25,8 @@ export class AddArmyModalComponent implements OnInit {
   }
 
   onAddArmy(armyName): void{
-    this.collectionService.saveNewArmy(armyName)
+    console.log(this.factionID)
+    this.collectionService.saveNewArmy(armyName, this.factionID)
     .subscribe()
     this.closeModal();
   }
