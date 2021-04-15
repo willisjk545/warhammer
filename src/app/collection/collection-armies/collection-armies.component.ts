@@ -6,6 +6,7 @@ import { CollectionService } from '../collection.service';
 import {ActivatedRoute} from '@angular/router';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
+import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-collection-armies',
@@ -37,14 +38,6 @@ export class CollectionArmiesComponent implements OnInit {
     .subscribe((armiesData) => this.armies = armiesData)
   }
 
-  onDeleteArmy(armyID: number): void{
-    this.collectionService.deleteArmy(armyID).pipe(
-      tap(() => this.onGetArmyByFactionID(this.factionID)))
-    .subscribe();
-    
-    this.closeModal();
-  }
-
   closeModal(): void {
     this.modalRef.hide();
   }
@@ -58,9 +51,13 @@ export class CollectionArmiesComponent implements OnInit {
     ).subscribe();
  }
 
- openConfirmModal(template: TemplateRef<any>, armyID: number): void {
-  const id = {id: armyID};
-  this.modalRef = this.modalService.show(template, {initialState: id, class: 'modal-sm'});
+ openConfirmModal( armyID: number): void {
+  this.modalRef = this.modalService.show(ConfirmModalComponent, {initialState: {armyID: armyID}});
+
+  this.modalRef.onHidden.pipe(
+    take(1),
+    tap(() => this.onGetArmyByFactionID(this.factionID))
+  ).subscribe();
   }
 
 }

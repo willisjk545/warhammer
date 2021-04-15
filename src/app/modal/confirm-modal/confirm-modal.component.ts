@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { tap } from 'rxjs/operators';
 import { CollectionService } from 'src/app/collection/collection.service';
 
 @Component({
@@ -10,18 +11,26 @@ import { CollectionService } from 'src/app/collection/collection.service';
 export class ConfirmModalComponent implements OnInit {
 
   unitID: number;
+  armyID: number;
   modalRef: BsModalRef;
 
-  constructor(private collectionSerivice: CollectionService,
+  constructor(private collectionService: CollectionService,
     private modalService: BsModalService) { }
 
   ngOnInit() {
   }
 
   onDeleteUnit(): void{
-    this.collectionSerivice.deleteUnit(this.unitID)
+    this.collectionService.deleteUnit(this.unitID)
     .subscribe();
 
+    this.closeModal();
+  }
+
+  onDeleteArmy(): void{
+    this.collectionService.deleteArmy(this.armyID)
+    .subscribe();
+    
     this.closeModal();
   }
 

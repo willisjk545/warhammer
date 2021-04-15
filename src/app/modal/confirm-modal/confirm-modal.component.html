@@ -1,6 +1,8 @@
 
   <div class="modal-body text-center">
-    <p>Delete Unit?</p>
-    <button type="button" class="btn btn-default" (click)="onDeleteUnit()">Yes</button>
+    <p *ngIf="unitID">Delete Unit?</p>
+    <p *ngIf="armyID">Delete Army?</p>
+    <button *ngIf="unitID" type="button" class="btn btn-default" (click)="onDeleteUnit()">Yes</button>
+    <button *ngIf="armyID" type="button" class="btn btn-default" (click)="onDeleteArmy()">Yes</button>
     <button type="button" class="btn btn-primary" (click)="closeModal()" >No</button>
   </div>

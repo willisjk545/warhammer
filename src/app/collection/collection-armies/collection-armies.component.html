@@ -16,7 +16,7 @@
           <img class="card-img-top">
           <div class="card-body">
             <h5 class="card-title card-title-text">{{army.value.name}}</h5>
-            <button class="btn btn-primary card-buttons"  (click)="openConfirmModal(template, army.value.id)"><i class="fas fa-minus"></i></button>
+            <button class="btn btn-primary card-buttons"  (click)="openConfirmModal(army.value.id)"><i class="fas fa-minus"></i></button>
             <a [routerLink]="['/collection-units', army.value.id, factionID]"><button class="btn btn-primary card-buttons"><i class="fas fa-check"></i></button></a>
           </div>
         </div>
@@ -30,10 +30,10 @@
     </div>
 </div>
 
-<ng-template #template>
+<!-- <ng-template #template>
     <div class="modal-body text-center">
       <p>Delete Army?</p>
       <button type="button" class="btn btn-default" (click)="onDeleteArmy(modalService.config.initialState.id)">Yes</button>
       <button type="button" class="btn btn-primary" (click)="closeModal()" >No</button>
     </div>
-  </ng-template>   
+  </ng-template>    -->

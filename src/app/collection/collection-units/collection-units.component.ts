@@ -113,7 +113,6 @@ export class CollectionUnitsComponent implements OnInit {
     }
     
     openConfirmDeleteModal(unitID: number): void {
-      const id = {id: unitID};
       this.modalRef = this.modalService.show(ConfirmModalComponent, {initialState: {unitID: unitID}});
 
       this.modalRef.onHidden.pipe(
