@@ -17,7 +17,7 @@ export class BtnCellRendererComponent implements ICellRendererAngularComp, OnDes
     this.btnIconClass = params.iconClass;
   }
 
-  btnClickedHandler() {
+  btnClickedHandler(params) {
     this.params.clicked(this.params.value);
   }
 

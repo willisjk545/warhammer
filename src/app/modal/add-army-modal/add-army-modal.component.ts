@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventEmitter } from 'events';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CollectionService } from 'src/app/collection/collection.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
