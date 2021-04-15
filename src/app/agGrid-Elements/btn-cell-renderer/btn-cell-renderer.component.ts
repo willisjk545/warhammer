@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ɵɵqueryRefresh } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 
@@ -27,4 +27,5 @@ export class BtnCellRendererComponent implements ICellRendererAngularComp, OnDes
   refresh(params: ICellRendererParams): any {
 
   }
+
 }
