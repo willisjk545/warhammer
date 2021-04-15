@@ -15,7 +15,7 @@ import { take, tap } from 'rxjs/operators';
 export class CollectionArmiesComponent implements OnInit {
 
   faction: string
-  armies: object;
+  armies: any;
   modalRef: BsModalRef;
   factionID: string;
 
