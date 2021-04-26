@@ -7,45 +7,49 @@ import { Observable } from 'rxjs';
 })
 export class CollectionService {
 
+  requestOptions = {                                                                                                                                                                                 
+    headers: new HttpHeaders({'Ocp-Apim-Subscription-Key':'8aff6aa7c4564f1aaf5e3cbb90ef1037'}), 
+  };
+
   constructor(
     private http: HttpClient
   ) { }
 
   getFactions(){
     //return this.http.get('https://localhost:5001/api/factions')
-    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/factions')
+    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/factions', this.requestOptions)
   }
 
   getArmies(){
     //const inboundData = this.http.get('https://localhost:5001/api/armies');
-    const inboundData = this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies');
+    const inboundData = this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies', this.requestOptions);
     return inboundData;
   }
 
   getArmyByFactionId(factionId){
     //return this.http.get('https://localhost:5001/api/armies/byFactionID/' + factionId)
-    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies/byFactionID/' + factionId)
+    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies/byFactionID/' + factionId, this.requestOptions)
   }
 
   saveNewArmy(armyName: string, factionID: number)
   {
     //return this.http.post('https://localhost:5001/api/armies', {"Name":armyName, "FactionID":factionID})
-    return this.http.post('https://warhammer40kservice-apim.azure-api.net/api/armies', {"Name":armyName, "FactionID":factionID})
+    return this.http.post('https://warhammer40kservice-apim.azure-api.net/api/armies', {"Name":armyName, "FactionID":factionID}, this.requestOptions)
   }
 
   deleteArmy(armyID) {
     //return this.http.delete('https://localhost:5001/api/armies/' + armyID)
-    return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/armies/' + armyID)
+    return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/armies/' + armyID, this.requestOptions)
   }
 
   getUnitsbyArmyID(armyID): Observable<any[]> {
     //return this.http.get<any[]>('https://localhost:5001/api/units/byArmyID/' + armyID)
-    return this.http.get<any[]>('https://warhammer40kservice-apim.azure-api.net/api/units/byArmyID/' + armyID)
+    return this.http.get<any[]>('https://warhammer40kservice-apim.azure-api.net/api/units/byArmyID/' + armyID, this.requestOptions)
   }
 
   deleteUnit(unitID) {
     //return this.http.delete('https://localhost:5001/api/units/' + unitID)
-    return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID)
+    return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
   }
 
   updateUnit(id: number, armyID: number, type: string, name: string, quantity: number){
@@ -60,7 +64,7 @@ export class CollectionService {
     "ArmyID": armyID,
     "Type": type,
     "Name": name,
-    "Quantity": quantity})
+    "Quantity": quantity}, this.requestOptions)
   }
 
   saveNewUnit(unitName: string, unitType: string, quantity: number, armyID: number) {
@@ -73,12 +77,12 @@ export class CollectionService {
       "Name": unitName, 
       "Type": unitType, 
       "Quantity": quantity,
-      "ArmyID": armyID})
+      "ArmyID": armyID}, this.requestOptions)
   }
 
   getUnitByUnitID(unitID: number) {
     //return this.http.get('https://localhost:5001/api/units/' + unitID)
-    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID)
+    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
   }
   
 }

@@ -1,4 +1,3 @@
 {
-    "appService.deploySubpath": "dist/warhammer",
-    "appService.defaultWebAppToDeploy": "/subscriptions/b73535ad-72c6-4cf8-8631-ecb7baf14b9e/resourceGroups/Warhammer/providers/Microsoft.Web/sites/Warhammer40K"
+    "appService.deploySubpath": ""
 }
