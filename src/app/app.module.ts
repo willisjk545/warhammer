@@ -19,12 +19,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditUnitModalComponent } from './modal/edit-unit-modal/edit-unit-modal.component';
 import { CollectionArmiesComponent } from './collection/collection-armies/collection-armies.component';
 import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.component';
+import { GalleryComponent } from './gallery/gallery/gallery.component';
 
 const appRoutes: Routes = [
   {path: '', component: CollectionComponent},
   {path: 'collection-units/:armyID/:factionID', component: CollectionUnitsComponent},
   {path: 'collection-wargear', component: CollectionWargearComponent},
   {path: 'collection-armies/:factionID', component: CollectionArmiesComponent},
+  {path: 'gallery', component: GalleryComponent}
 
 ]
 
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     CollectionWargearComponent,
     EditUnitModalComponent,
     CollectionArmiesComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
