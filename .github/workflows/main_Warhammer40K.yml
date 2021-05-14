@@ -53,4 +53,4 @@ jobs:
         app-name: 'Warhammer40K'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9fd6cfcf23c6460eb6c19ac08da19d74 }}
-        package: .
+        package: ./dist/warhammer
