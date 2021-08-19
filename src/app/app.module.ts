@@ -20,14 +20,16 @@ import { EditUnitModalComponent } from './modal/edit-unit-modal/edit-unit-modal.
 import { CollectionArmiesComponent } from './collection/collection-armies/collection-armies.component';
 import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.component';
 import { GalleryComponent } from './gallery/gallery/gallery.component';
+import { AuthenticationComponent } from './Navigation/authentication/authentication.component';
+import { NewUserModalComponent } from './modal/new-user-modal/new-user-modal.component';
 
 const appRoutes: Routes = [
   {path: '', component: CollectionComponent},
   {path: 'collection-units/:armyID/:factionID', component: CollectionUnitsComponent},
   {path: 'collection-wargear', component: CollectionWargearComponent},
   {path: 'collection-armies/:factionID', component: CollectionArmiesComponent},
-  {path: 'gallery', component: GalleryComponent}
-
+  {path: 'gallery', component: GalleryComponent},
+  {path: 'auth', component: AuthenticationComponent}
 ]
 
 @NgModule({
@@ -43,7 +45,9 @@ const appRoutes: Routes = [
     EditUnitModalComponent,
     CollectionArmiesComponent,
     ConfirmModalComponent,
-    GalleryComponent
+    GalleryComponent,
+    AuthenticationComponent,
+    NewUserModalComponent
   ],
   imports: [
     BrowserModule,

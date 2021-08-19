@@ -84,5 +84,10 @@ export class CollectionService {
     //return this.http.get('https://localhost:5001/api/units/' + unitID)
     return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
   }
+
+  loginUser(username: string, password: string)
+  {
+    return this.http.get('https://localhost:5001/api/users/checkPassword/' + username + "/" + password)
+  }
   
 }
