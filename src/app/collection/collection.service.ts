@@ -89,5 +89,10 @@ export class CollectionService {
   {
     return this.http.get('https://localhost:5001/api/users/checkPassword/' + username + "/" + password)
   }
+
+  addNewUser(username: string, password: string)
+  {
+    return this.http.post('https://localhost:5001/api/users/', {"Username": username, "Password":password})
+  }
   
 }

@@ -62,6 +62,6 @@ const appRoutes: Routes = [
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent],
-  entryComponents: [AddArmyModalComponent, EditUnitModalComponent, ConfirmModalComponent]
+  entryComponents: [AddArmyModalComponent, EditUnitModalComponent, ConfirmModalComponent, NewUserModalComponent]
 })
 export class AppModule { }

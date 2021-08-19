@@ -1,1 +1,35 @@
-<p>new-user-modal works!</p>
+<div class="container w-80 p-2">
+    <div class="row">
+        <div class="col-md-12 margin-top">
+            Username: 
+            <input 
+            type="text"
+            class="form-control"
+            [formControl]="username">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            Password: 
+            <input 
+            type="password" 
+            class="form-control" 
+            [formControl]="password">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="btn btn-primary mt-3 w-100" 
+            (click)="submitNewUser(username.value, password.value)">
+            Create</div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="btn btn-primary mt-3 w-100" 
+            (click)="closeModal()">
+            Cancel</div>
+        </div>
+    </div>
+</div>

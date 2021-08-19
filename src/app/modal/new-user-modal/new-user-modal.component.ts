@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { CollectionService } from 'src/app/collection/collection.service';
 
 @Component({
   selector: 'app-new-user-modal',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewUserModalComponent implements OnInit {
 
-  constructor() { }
+  username = new FormControl('')
+  password = new FormControl('')
+
+  constructor(private modalService: BsModalService,
+              private collectionService: CollectionService) { }
 
   ngOnInit(): void {
+  }
+
+  submitNewUser(username, password)
+  {
+    this.collectionService.addNewUser(username, password)
+    .subscribe((test) => console.log(test))
+    this.closeModal()
+  }
+
+  closeModal()
+  {
+    this.modalService.hide();
   }
 
 }

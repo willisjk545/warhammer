@@ -25,7 +25,6 @@ export class AddArmyModalComponent implements OnInit {
   }
 
   onAddArmy(armyName): void{
-    console.log(this.factionID)
     this.collectionService.saveNewArmy(armyName, this.factionID)
     .subscribe()
     this.closeModal();
