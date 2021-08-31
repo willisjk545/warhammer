@@ -17,6 +17,7 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit() {
     this.showFactions();
+    console.log(sessionStorage);
   }
 
   showFactions(): void {

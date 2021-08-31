@@ -24,12 +24,12 @@ import { AuthenticationComponent } from './Navigation/authentication/authenticat
 import { NewUserModalComponent } from './modal/new-user-modal/new-user-modal.component';
 
 const appRoutes: Routes = [
-  {path: '', component: CollectionComponent},
+  {path: 'faction', component: CollectionComponent},
   {path: 'collection-units/:armyID/:factionID', component: CollectionUnitsComponent},
   {path: 'collection-wargear', component: CollectionWargearComponent},
   {path: 'collection-armies/:factionID', component: CollectionArmiesComponent},
   {path: 'gallery', component: GalleryComponent},
-  {path: 'auth', component: AuthenticationComponent}
+  {path: '', component: AuthenticationComponent}
 ]
 
 @NgModule({

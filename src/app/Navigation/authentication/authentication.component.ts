@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { tap } from 'rxjs/operators';
 import { CollectionService } from 'src/app/collection/collection.service';
 import { NewUserModalComponent } from 'src/app/modal/new-user-modal/new-user-modal.component';
 
@@ -17,17 +19,22 @@ export class AuthenticationComponent implements OnInit {
   modalRef: BsModalRef;
 
   constructor(private collectionService: CollectionService,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   checkUserCredentials(username: string, password: string)
   {
-    //console.log(username, password)
-    this.collectionService.loginUser(username, password)
-    //.subscribe((authorized) => this.isAuthorised = authorized)
-    .subscribe((authorized) => console.log(authorized))
+    this.collectionService.loginUser(username, password).pipe(
+      tap((authorized) => {this.isAuthorised = authorized;
+        if (this.isAuthorised != false)
+        {
+          sessionStorage.setItem("sessionID", this.isAuthorised);
+          this.router.navigate(['/faction'])
+        }}))
+      .subscribe()
   }
 
   openModal(): void
