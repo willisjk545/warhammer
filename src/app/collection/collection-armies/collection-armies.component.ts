@@ -19,6 +19,7 @@ export class CollectionArmiesComponent implements OnInit {
   armies: any;
   modalRef: BsModalRef;
   factionID: string;
+  userID = sessionStorage.sessionID
 
   constructor(private collectionService: CollectionService,
     private modalService: BsModalService,
@@ -30,11 +31,11 @@ export class CollectionArmiesComponent implements OnInit {
       this.factionID = params.get('factionID')
     })
 
-   this.onGetArmyByFactionID(this.factionID)
+   this.onGetArmyByFactionID(this.factionID, this.userID)
   }
 
-  onGetArmyByFactionID(factionID: string): void {
-    this.collectionService.getArmyByFactionId(factionID)
+  onGetArmyByFactionID(factionID, userID): void {
+    this.collectionService.getArmyByFactionId(factionID, userID)
     .subscribe((armiesData) => this.armies = armiesData)
   }
 
@@ -47,7 +48,7 @@ export class CollectionArmiesComponent implements OnInit {
 
     this.modalRef.onHidden.pipe(
       take(1),
-      tap(() => this.onGetArmyByFactionID(this.factionID))
+      tap(() => this.onGetArmyByFactionID(this.factionID, this.userID))
     ).subscribe();
  }
 
@@ -56,7 +57,7 @@ export class CollectionArmiesComponent implements OnInit {
 
   this.modalRef.onHidden.pipe(
     take(1),
-    tap(() => this.onGetArmyByFactionID(this.factionID))
+    tap(() => this.onGetArmyByFactionID(this.factionID, this.userID))
   ).subscribe();
   }
 

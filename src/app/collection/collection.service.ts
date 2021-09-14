@@ -26,9 +26,9 @@ export class CollectionService {
     return inboundData;
   }
 
-  getArmyByFactionId(factionId){
-    //return this.http.get('https://localhost:5001/api/armies/byFactionID/' + factionId)
-    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies/byFactionID/' + factionId, this.requestOptions)
+  getArmyByFactionId(factionId, userID){
+    return this.http.get('https://localhost:5001/api/armies/byFactionID/' + factionId + '/' + userID)
+    //return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies/byFactionID/' + factionId, this.requestOptions)
   }
 
   saveNewArmy(armyName: string, factionID: number)
