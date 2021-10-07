@@ -22,6 +22,7 @@ export class CollectionUnitsComponent implements OnInit {
   onClickOpenModal = (id:number) => this.openEditModal.call(this, id);
   modalRef: BsModalRef;
   unitsData: any;
+  userID = sessionStorage.sessionID;
 
   frameworkComponents = {
     btnCellRenderer: BtnCellRendererComponent
@@ -74,7 +75,7 @@ export class CollectionUnitsComponent implements OnInit {
       this.factionIDParam = params.get('factionID');
     })
 
-    this.onGetUnitsByArmyID(this.armyIDParam);
+    this.onGetUnitsByArmyID(this.armyIDParam, this.userID);
   }
 
   onDeleteUnit(unitID: number): void{
@@ -84,8 +85,8 @@ export class CollectionUnitsComponent implements OnInit {
     this.closeModal();
   }
   
-  onGetUnitsByArmyID(armyID: any): void {
-    this.collectionSerivice.getUnitsbyArmyID(armyID)
+  onGetUnitsByArmyID(armyID: any, userID: any): void {
+    this.collectionSerivice.getUnitsbyArmyID(armyID, userID)
     .subscribe((unitsData) => this.unitsData = unitsData)
   }
   
@@ -98,7 +99,7 @@ export class CollectionUnitsComponent implements OnInit {
     
     this.modalRef.onHidden.pipe(
       take(1),
-      tap(() => this.onGetUnitsByArmyID(this.armyIDParam))
+      tap(() => this.onGetUnitsByArmyID(this.armyIDParam, this.userID))
       ).subscribe();
     }
 
@@ -108,7 +109,7 @@ export class CollectionUnitsComponent implements OnInit {
   
       this.modalRef.onHidden.pipe(
         take(1),
-        tap(() => this.onGetUnitsByArmyID(this.armyIDParam))
+        tap(() => this.onGetUnitsByArmyID(this.armyIDParam, this.userID))
       ).subscribe();
     }
     
@@ -117,7 +118,7 @@ export class CollectionUnitsComponent implements OnInit {
 
       this.modalRef.onHidden.pipe(
         take(1),
-        tap(() => this.onGetUnitsByArmyID(this.armyIDParam))
+        tap(() => this.onGetUnitsByArmyID(this.armyIDParam, this.userID))
       ).subscribe();
     }
 }

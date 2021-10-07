@@ -17,6 +17,7 @@ export class EditUnitModalComponent implements OnInit {
   unitID: number;
   armyID: number;
   editMode: boolean;
+  userID = sessionStorage.sessionID;
 
   constructor(private modalService: BsModalService,
               private collectionService: CollectionService) { }
@@ -50,14 +51,14 @@ export class EditUnitModalComponent implements OnInit {
   }
 
   onUpdateUnits(): void {
-    this.collectionService.updateUnit(this.unitID, this.armyID, this.typeName, this.unitName, this.quantity)
+    this.collectionService.updateUnit(this.unitID, this.armyID, this.typeName, this.unitName, this.quantity, this.userID)
     .subscribe();
 
     this.closeModal();
   }
 
   onAddNewUnit(): void {
-    this.collectionService.saveNewUnit(this.unitName, this.typeName, this.quantity, this.armyID)
+    this.collectionService.saveNewUnit(this.unitName, this.typeName, this.quantity, this.armyID, parseInt(this.userID))
     .subscribe();
     
     this.closeModal();

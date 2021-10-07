@@ -16,6 +16,7 @@ export class AddArmyModalComponent implements OnInit {
   armyName = new FormControl('');
   modalRef: BsModalRef;
   factionID: number;
+  userID = sessionStorage.sessionID;
 
 
   constructor(private collectionService: CollectionService,
@@ -25,7 +26,7 @@ export class AddArmyModalComponent implements OnInit {
   }
 
   onAddArmy(armyName): void{
-    this.collectionService.saveNewArmy(armyName, this.factionID)
+    this.collectionService.saveNewArmy(armyName, this.factionID, parseInt(this.userID))
     .subscribe()
     this.closeModal();
   }

@@ -13,6 +13,7 @@ export class ConfirmModalComponent implements OnInit {
   unitID: number;
   armyID: number;
   modalRef: BsModalRef;
+  userID = sessionStorage.sessionID
 
   constructor(private collectionService: CollectionService,
     private modalService: BsModalService) { }
@@ -28,7 +29,7 @@ export class ConfirmModalComponent implements OnInit {
   }
 
   onDeleteArmy(): void{
-    this.collectionService.deleteArmy(this.armyID)
+    this.collectionService.deleteArmy(this.armyID, this.userID)
     .subscribe();
     
     this.closeModal();

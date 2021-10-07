@@ -20,31 +20,25 @@ export class CollectionService {
     return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/factions', this.requestOptions)
   }
 
-  getArmies(){
-    //const inboundData = this.http.get('https://localhost:5001/api/armies');
-    const inboundData = this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies', this.requestOptions);
-    return inboundData;
-  }
-
-  getArmyByFactionId(factionId, userID){
-    return this.http.get('https://localhost:5001/api/armies/byFactionID/' + factionId + '/' + userID)
+  getArmiesByFactionId(factionID: number, userID: number){
+    return this.http.get('https://localhost:5001/api/armies/getArmiesByFactionID/' + factionID + '/' + userID)
     //return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/armies/byFactionID/' + factionId, this.requestOptions)
   }
 
-  saveNewArmy(armyName: string, factionID: number)
+  saveNewArmy(armyName: string, factionID: number, userID: number)
   {
-    //return this.http.post('https://localhost:5001/api/armies', {"Name":armyName, "FactionID":factionID})
-    return this.http.post('https://warhammer40kservice-apim.azure-api.net/api/armies', {"Name":armyName, "FactionID":factionID}, this.requestOptions)
+    return this.http.post('https://localhost:5001/api/armies', {"Name":armyName, "FactionID":factionID, "UserID":userID})
+    //return this.http.post('https://warhammer40kservice-apim.azure-api.net/api/armies', {"Name":armyName, "FactionID":factionID}, this.requestOptions)
   }
 
-  deleteArmy(armyID) {
-    //return this.http.delete('https://localhost:5001/api/armies/' + armyID)
-    return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/armies/' + armyID, this.requestOptions)
+  deleteArmy(armyID: number, userID: number) {
+    return this.http.delete('https://localhost:5001/api/armies/' + armyID+ '/' + userID)
+    //return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/armies/' + armyID, this.requestOptions)
   }
 
-  getUnitsbyArmyID(armyID): Observable<any[]> {
-    //return this.http.get<any[]>('https://localhost:5001/api/units/byArmyID/' + armyID)
-    return this.http.get<any[]>('https://warhammer40kservice-apim.azure-api.net/api/units/byArmyID/' + armyID, this.requestOptions)
+  getUnitsbyArmyID(armyID: number, userID: number): Observable<any[]> {
+    return this.http.get<any[]>('https://localhost:5001/api/units/byArmyID/' + armyID + '/' + userID)
+    //return this.http.get<any[]>('https://warhammer40kservice-apim.azure-api.net/api/units/byArmyID/' + armyID, this.requestOptions)
   }
 
   deleteUnit(unitID) {
@@ -52,32 +46,34 @@ export class CollectionService {
     return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
   }
 
-  updateUnit(id: number, armyID: number, type: string, name: string, quantity: number){
-    // return this.http.put('https://localhost:5001/api/units', {
-    // "ID": id,
-    // "ArmyID": armyID,
-    // "Type": type,
-    // "Name": name,
-    // "Quantity": quantity})
-    return this.http.put('https://warhammer40kservice-apim.azure-api.net/api/units', {
+  updateUnit(id: number, armyID: number, type: string, name: string, quantity: number, userID: number){
+    return this.http.put('https://localhost:5001/api/units', {
     "ID": id,
     "ArmyID": armyID,
     "Type": type,
     "Name": name,
-    "Quantity": quantity}, this.requestOptions)
+    "Quantity": quantity,
+    "UserID": userID})
+    // return this.http.put('https://warhammer40kservice-apim.azure-api.net/api/units', {
+    // "ID": id,
+    // "ArmyID": armyID,
+    // "Type": type,
+    // "Name": name,
+    // "Quantity": quantity}, this.requestOptions)
   }
 
-  saveNewUnit(unitName: string, unitType: string, quantity: number, armyID: number) {
-    // return this.http.post('https://localhost:5001/api/units', {
-    //   "Name": unitName, 
-    //   "Type": unitType, 
-    //   "Quantity": quantity,
-    //   "ArmyID": armyID})
-    return this.http.post('https://warhammer40kservice-apim.azure-api.net/api/units', {
+  saveNewUnit(unitName: string, unitType: string, quantity: number, armyID: number, userID: number) {
+    return this.http.post('https://localhost:5001/api/units', {
       "Name": unitName, 
       "Type": unitType, 
       "Quantity": quantity,
-      "ArmyID": armyID}, this.requestOptions)
+      "ArmyID": armyID,
+      "UserID": userID})
+    // return this.http.post('https://warhammer40kservice-apim.azure-api.net/api/units', {
+    //   "Name": unitName, 
+    //   "Type": unitType, 
+    //   "Quantity": quantity,
+    //   "ArmyID": armyID}, this.requestOptions)
   }
 
   getUnitByUnitID(unitID: number) {
