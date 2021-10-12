@@ -41,9 +41,9 @@ export class CollectionService {
     //return this.http.get<any[]>('https://warhammer40kservice-apim.azure-api.net/api/units/byArmyID/' + armyID, this.requestOptions)
   }
 
-  deleteUnit(unitID) {
-    //return this.http.delete('https://localhost:5001/api/units/' + unitID)
-    return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
+  deleteUnit(unitID: number, userID: number) {
+    return this.http.delete('https://localhost:5001/api/units/' + unitID + '/' + userID)
+    //return this.http.delete('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
   }
 
   updateUnit(id: number, armyID: number, type: string, name: string, quantity: number, userID: number){
@@ -76,9 +76,9 @@ export class CollectionService {
     //   "ArmyID": armyID}, this.requestOptions)
   }
 
-  getUnitByUnitID(unitID: number) {
-    //return this.http.get('https://localhost:5001/api/units/' + unitID)
-    return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
+  getUnitByUnitID(unitID: number, userID:number) {
+    return this.http.get('https://localhost:5001/api/units/' + unitID + '/' + userID)
+    //return this.http.get('https://warhammer40kservice-apim.azure-api.net/api/units/' + unitID, this.requestOptions)
   }
 
   loginUser(username: string, password: string)

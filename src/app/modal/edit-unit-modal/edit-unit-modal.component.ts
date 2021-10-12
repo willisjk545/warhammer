@@ -24,7 +24,7 @@ export class EditUnitModalComponent implements OnInit {
 
   ngOnInit() {
     if (this.unitID) {
-      this.collectionService.getUnitByUnitID(this.unitID).pipe(
+      this.collectionService.getUnitByUnitID(this.unitID, this.userID).pipe(
         tap((unitData) => {
         this.currentUnit = unitData
         this.typeName = this.currentUnit.type
@@ -51,7 +51,7 @@ export class EditUnitModalComponent implements OnInit {
   }
 
   onUpdateUnits(): void {
-    this.collectionService.updateUnit(this.unitID, this.armyID, this.typeName, this.unitName, this.quantity, this.userID)
+    this.collectionService.updateUnit(this.unitID, this.armyID, this.typeName, this.unitName, this.quantity, parseInt(this.userID))
     .subscribe();
 
     this.closeModal();

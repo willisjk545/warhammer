@@ -22,7 +22,7 @@ export class ConfirmModalComponent implements OnInit {
   }
 
   onDeleteUnit(): void{
-    this.collectionService.deleteUnit(this.unitID)
+    this.collectionService.deleteUnit(this.unitID, this.userID)
     .subscribe();
 
     this.closeModal();

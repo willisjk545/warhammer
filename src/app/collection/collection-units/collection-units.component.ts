@@ -79,7 +79,7 @@ export class CollectionUnitsComponent implements OnInit {
   }
 
   onDeleteUnit(unitID: number): void{
-    this.collectionSerivice.deleteUnit(unitID)
+    this.collectionSerivice.deleteUnit(unitID, this.userID)
     .subscribe();
 
     this.closeModal();
